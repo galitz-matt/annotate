@@ -1,17 +1,17 @@
 import { open } from "@tauri-apps/plugin-dialog";
 
-export type FilePickerProps = {
+export type PdfPickerProps = {
     value: string | null;
     onChange: (path: string | null) => void;
 }
 
-export function FilePicker({
+export function PdfPicker({
     value,
     onChange
-}: FilePickerProps) {
+}: PdfPickerProps) {
 
-    async function pickFile() {
-        const path = await open({
+    async function pickPDF() {
+        const pdfPath = await open({
             multiple: false,
             directory: false,
             filters: [
@@ -22,8 +22,8 @@ export function FilePicker({
             ]
         })
 
-        if (path !== null) {
-            onChange(path);     
+        if (pdfPath !== null) {
+            onChange(pdfPath);     
         }
     }
 
@@ -34,7 +34,7 @@ export function FilePicker({
                 readOnly 
                 placeholder="Choose a file..."
             />
-            <button type="button" onClick={pickFile}>
+            <button type="button" onClick={pickPDF}>
                 Browse
             </button>
         </div>
